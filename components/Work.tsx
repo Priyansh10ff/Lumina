@@ -9,7 +9,7 @@ import {
   Users,
   Cpu,
 } from "lucide-react";
-import { Tilt } from "react-tilt";
+import  Tilt  from "react-parallax-tilt";
 
 // UPDATED WITH YOUR REAL PROJECTS
 const projects = [
