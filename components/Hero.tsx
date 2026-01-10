@@ -5,21 +5,31 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  
+  // Reduced movement range for better performance
+  const y1 = useTransform(scrollY, [0, 500], [0, 100]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -100]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Blobs */}
-      <motion.div style={{ y: y1, x: -100 }} className="absolute top-20 left-10 w-64 h-64 md:w-96 md:h-96 bg-purple-600/30 rounded-full blur-[100px]" />
-      <motion.div style={{ y: y2, x: 100 }} className="absolute bottom-20 right-10 w-64 h-64 md:w-96 md:h-96 bg-blue-600/30 rounded-full blur-[100px]" />
+      {/* OPTIMIZED BLOBS: Added 'gpu' class and reduced blur from 100px to 64px */}
+      <motion.div 
+        style={{ y: y1, x: -50 }} 
+        className="gpu absolute top-20 left-10 w-64 h-64 md:w-96 md:h-96 bg-purple-600/20 rounded-full blur-[64px]" 
+      />
+      <motion.div 
+        style={{ y: y2, x: 50 }} 
+        className="gpu absolute bottom-20 right-10 w-64 h-64 md:w-96 md:h-96 bg-blue-600/20 rounded-full blur-[64px]" 
+      />
 
       <div className="container mx-auto px-6 relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="gpu" // Added GPU class here too
         >
+          {/* ... Keep your existing text/buttons code exactly the same ... */}
           <div className="inline-block px-4 py-1.5 mb-6 border border-white/10 rounded-full bg-white/5 backdrop-blur-sm">
             <span className="text-sm font-medium text-blue-300">✨ Accepting New Projects</span>
           </div>
@@ -34,7 +44,7 @@ export default function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {/* LINKEDIN LINK */}
+             {/* ... Your buttons ... */}
             <motion.a 
               href="https://www.linkedin.com/in/priyansh-dugar-709333363/"
               target="_blank"

@@ -7,48 +7,52 @@ import Process from '@/components/Process';
 import Vision from '@/components/Vision';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
+import StarField from '@/components/StarField'; // <--- The 3D Engine is Back
 import { Linkedin } from 'lucide-react';
 
 export default function Home() {
   return (
-    <main className="bg-black min-h-screen selection:bg-blue-500/30">
-      <Navbar />
-      <Hero />
-      <TechStack />
-      <Features />
-      <Work />
-      <Process />
-      <Vision />
-      <FAQ />
+    <main className="bg-black min-h-screen selection:bg-purple-500/90 selection:text-white">
       
-      {/* FINAL CTA - REVERTED TO "RULE THE WORLD" */}
-      <section className="py-32 relative overflow-hidden text-center border-t border-white/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-black to-black pointer-events-none" />
+      {/* 1. THE 3D UNIVERSE (Fixed Background) */}
+      <StarField />
+      
+      {/* 2. THE CONTENT (Relative Z-10 to sit ON TOP of the stars) */}
+      <div className="relative z-10">
+        <Navbar />
         
-        <div className="container mx-auto px-6 relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-tight">
-            Let's Rule the World.
-          </h2>
-          <p className="text-gray-300 mb-10 max-w-2xl mx-auto text-xl leading-relaxed">
-            You have the vision. I have the code. 
-            Connect with me, and let's build a digital experience that leaves your competition in the dust.
-          </p>
-          
-          <div className="flex justify-center">
-            <a 
-              href="https://www.linkedin.com/in/priyansh-dugar-709333363/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[#0077b5] text-white rounded-full font-bold text-lg hover:bg-[#006396] transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(0,119,181,0.3)]"
-            >
-              <Linkedin className="w-6 h-6" />
-              Connect on LinkedIn
-            </a>
+        {/* We use the simple Hero text, but the background is now the 3D stars */}
+        <Hero />
+        
+        <TechStack />
+        <Features />
+        <Work />
+        <Process />
+        <Vision />
+        <FAQ />
+        
+        {/* FINAL CTA */}
+        <section className="py-40 relative overflow-hidden text-center">
+          <div className="container mx-auto px-6 relative z-10">
+            <h2 className="text-5xl md:text-8xl font-black text-white mb-12 tracking-tighter mix-blend-difference">
+              THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">ASCENSION</span>
+            </h2>
+            <div className="flex justify-center">
+              <a 
+                href="https://www.linkedin.com/in/priyansh-dugar-709333363/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-3 px-12 py-6 bg-white text-black rounded-full font-bold text-xl overflow-hidden hover:scale-105 transition-transform duration-300"
+              >
+                <Linkedin className="w-6 h-6" />
+                Connect
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Footer />
+        <Footer />
+      </div>
     </main>
   );
 }
